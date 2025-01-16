@@ -1,3 +1,3 @@
 # north-korea-game
 
-you can download a runnable jar via this link: https://drive.google.com/file/d/1qjdnQB8BrWXi_7OZ3SOVy1W_-cX_NTbx/view?usp=sharing
+you can download a runnable jar via this link: https://drive.google.com/drive/folders/1e4lK7xfH-FTLcIaHHKkUvHU952ZKllX2?usp=sharing
