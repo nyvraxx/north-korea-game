@@ -10,11 +10,12 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+import scenes.Util;
 
 public class Scene extends JPanel {
 	/**
@@ -37,7 +38,7 @@ public class Scene extends JPanel {
 		Cursor nukeCursor = null;
 
 		try {
-			BufferedImage img = ImageIO.read(new File("resources/cursor.png"));
+			BufferedImage img = ImageIO.read(Util.getFile("cursor.png"));
 
 			BufferedImage resized = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
 

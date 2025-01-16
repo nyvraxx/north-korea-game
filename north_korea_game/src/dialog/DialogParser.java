@@ -1,7 +1,6 @@
 package dialog;
 
 import java.awt.Image;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,6 +8,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
+
+import scenes.Util;
 
 public class DialogParser {
 	private static HashMap<String, Image> emotions = new HashMap<>();
@@ -19,11 +20,13 @@ public class DialogParser {
 
 	static {
 		try {
-			Scanner s = new Scanner(new File("resources/emotions/emotions.txt"));
+			Scanner s = null;
+			s = new Scanner(Util.getFile("emotions/emotions.txt"));
 
 			while (s.hasNext()) {
 				String emotion = s.next();
-				Image img = ImageIO.read(new File("resources/emotions/" + emotion + ".png"));
+				Image img = ImageIO.read(Util.getFile("emotions/" + emotion + ".png"));
+
 				emotions.put(emotion, img);
 			}
 
@@ -33,7 +36,9 @@ public class DialogParser {
 		}
 
 		try {
-			Scanner s = new Scanner(new File("resources/dialog.txt"));
+			Scanner s;
+
+			s = new Scanner(Util.getFile("dialog.txt"));
 
 			int numDialogs = s.nextInt();
 

@@ -10,7 +10,6 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -112,7 +111,7 @@ public class DayOneAdditionalInfoScene extends Scene {
 				g);
 
 		try {
-			Image img = ImageIO.read(new File("resources/joe_biden_1.png"));
+			Image img = ImageIO.read(Util.getFile("joe_biden_1.png"));
 
 			Util.drawImageCentered(img, W / 2, H * 3 / 10, W / 2, g);
 

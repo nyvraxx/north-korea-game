@@ -54,7 +54,7 @@ public class DayOneScene extends Scene {
 		super.paintComponent(g);
 		g = this.getTransformedGraphics(g);
 
-		Image img = Util.readImg("resources/folder.png");
+		Image img = Util.readImg("folder.png");
 		Util.drawImageCentered(img, W / 2, H * 3 / 5, 300, g);
 
 		g.setFont(new Font("courier new", Font.BOLD, 22));

@@ -10,7 +10,6 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -26,7 +25,7 @@ public class IntroScene extends Scene {
 	 */
 	private static final long serialVersionUID = -2216497719151897548L;
 
-	public static Audio audio = new Audio("resources/audio/Cut and Run.wav");
+	public static Audio audio = new Audio("audio/Cut and Run.wav");
 
 	{
 //		audio.setVolume(-6f);
@@ -123,7 +122,7 @@ public class IntroScene extends Scene {
 				g);
 
 		try {
-			Image img = ImageIO.read(new File("resources/joe biden happy.png"));
+			Image img = ImageIO.read(Util.getFile("joe biden happy.png"));
 
 			Util.drawImageCentered(img, W / 2, H * 2 / 10, W / 3, g);
 

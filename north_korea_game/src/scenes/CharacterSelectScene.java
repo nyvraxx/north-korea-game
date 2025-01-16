@@ -84,7 +84,7 @@ public class CharacterSelectScene extends Scene {
 	{
 		for (int i = 0; i < buttons.length; i++) {
 			buttons[i] = new CharacterSelectButton(
-					"resources/characters/North Korea Ambassador Simulator (" + (i + 1) + ").png");
+					"characters/North Korea Ambassador Simulator (" + (i + 1) + ").png");
 
 			this.add(buttons[i]);
 		}
@@ -147,6 +147,6 @@ public class CharacterSelectScene extends Scene {
 
 	}
 
-	public static Image characterImg = Util.readImg("resources/characters/North Korea Ambassador Simulator (1).png");
+	public static Image characterImg = Util.readImg("characters/North Korea Ambassador Simulator (1).png");
 
 }

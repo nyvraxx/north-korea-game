@@ -25,7 +25,7 @@ public class TitleScene extends Scene {
 	private Audio audio;
 
 	{
-		audio = new Audio("resources/audio/The Descent.wav");
+		audio = new Audio("audio/The Descent.wav");
 		audio.play();
 	}
 	
@@ -218,7 +218,7 @@ public class TitleScene extends Scene {
 		audio.stop();
 	}
 
-	private static final Image BIG_RED_BUTTON_IMG = Util.readImg("resources/red_button.png");
+	private static final Image BIG_RED_BUTTON_IMG = Util.readImg("red_button.png");
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -276,7 +276,7 @@ public class TitleScene extends Scene {
 			}.start();
 		}
 
-		private Image explosionImg = Util.readImg("resources/explosion.png");
+		private Image explosionImg = Util.readImg("explosion.png");
 
 		@Override
 		public void paintComponent(Graphics g) {

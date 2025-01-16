@@ -8,7 +8,6 @@ import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -31,7 +30,7 @@ public class DialogScene extends Scene {
 	 */
 	private static final long serialVersionUID = 5748400695380493065L;
 
-	public static Audio backgroundAudio = new Audio("resources/audio/Decisions.wav");
+	public static Audio backgroundAudio = new Audio("audio/Decisions.wav");
 
 	private Dialog currentDialog = DialogParser.dialogs.get(0);
 
@@ -166,12 +165,12 @@ public class DialogScene extends Scene {
 
 		try {
 			if (currentDialog.id == 101)
-				Util.drawImageCentered(ImageIO.read(new File("resources/endings/" + currentDialog.id + ".png")),
-						W * 1 / 2, H * 2 / 3, W * 4 / 10, g);
-			else
-				Util.drawImageCentered(ImageIO.read(new File("resources/endings/" + currentDialog.id + ".png")),
-						W * 1 / 2, H * 2 / 3, W / 2, g);
-
+				Util.drawImageCentered(ImageIO.read(Util.getFile("endings/" + currentDialog.id + ".png")), W * 1 / 2,
+						H * 2 / 3, W * 4 / 10, g);
+			else {
+				Util.drawImageCentered(ImageIO.read(Util.getFile("endings/" + currentDialog.id + ".png")), W * 1 / 2,
+						H * 2 / 3, W * 1 / 2, g);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -246,7 +245,7 @@ public class DialogScene extends Scene {
 
 		if (next.options.size() == 0) {
 			backgroundAudio.stop();
-			endingAudio = new Audio("resources/endings/" + next.id + ".wav");
+			endingAudio = new Audio("endings/" + next.id + ".wav");
 			endingAudio.play();
 		}
 

@@ -6,12 +6,48 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 import javax.imageio.ImageIO;
 
 public class Util {
 	private Util() {
+	}
+
+	public static File extractResourceToTempFile(String resourceName) throws IOException {
+		// Get the resource URL (could be inside a JAR or on the filesystem)
+		URL resourceUrl = Util.class.getClassLoader().getResource(resourceName);
+		if (resourceUrl == null) {
+			throw new FileNotFoundException("Resource not found: " + resourceName);
+		}
+
+		// Create a temporary file to store the extracted resource
+		File tempFile = new File(System.getProperty("java.io.tmpdir"), "temp_" + resourceName.replace("/", "_"));
+
+		// If the resource is inside a JAR (non-hierarchical URI), copy it to the temp
+		// file
+		if ("jar".equals(resourceUrl.getProtocol())) {
+			try (InputStream inputStream = resourceUrl.openStream()) {
+				Files.copy(inputStream, tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			}
+		} else {
+			// If the resource is a normal file (e.g., on the filesystem), just use it
+			// directly
+			try {
+				tempFile = new File(resourceUrl.toURI());
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return tempFile;
 	}
 
 	public static void drawStringCentered(int x, int y, String string, Graphics g) {
@@ -21,6 +57,16 @@ public class Util {
 		int height = metrics.getHeight();
 
 		g.drawString(string, x - width / 2, y + height / 4);
+	}
+
+	public static File getFile(String path) {
+		try {
+			return extractResourceToTempFile(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public static void drawRectCentered(int x, int y, int w, int h, Graphics g) {
@@ -48,7 +94,7 @@ public class Util {
 
 	public static BufferedImage readImg(String path) {
 		try {
-			return ImageIO.read(new File(path));
+			return ImageIO.read(Util.getFile(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

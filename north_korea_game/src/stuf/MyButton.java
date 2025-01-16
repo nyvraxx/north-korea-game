@@ -36,7 +36,7 @@ public class MyButton extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (playSound)
-					Audio.playFile("resources/button-202966.wav");
+					Audio.playFile("button-202966.wav");
 			}
 
 			@Override

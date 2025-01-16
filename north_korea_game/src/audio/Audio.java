@@ -2,12 +2,15 @@ package audio;
 
 import java.io.File;
 import java.io.IOException;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+
+import scenes.Util;
 
 public class Audio {
 	public static void playFile(String filePath) {
@@ -18,7 +21,7 @@ public class Audio {
 	private Clip clip;
 	private AudioInputStream audioStream;
 
-	public static final String NUKE_SOUND = "resources/audio/explosion-meme-made-with-Voicemod.wav";
+	public static final String NUKE_SOUND = "audio/explosion-meme-made-with-Voicemod.wav";
 
 	public void setVolume(float vol) {
 		FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
@@ -27,7 +30,8 @@ public class Audio {
 
 	public Audio(String filePath) {
 		this.setFilePath(filePath);
-		File soundFile = new File(filePath);
+		File soundFile = null;
+		soundFile = Util.getFile(filePath);
 
 		if (!soundFile.exists()) {
 			System.err.println("Audio file not found: " + filePath);
